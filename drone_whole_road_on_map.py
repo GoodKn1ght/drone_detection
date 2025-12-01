@@ -30,6 +30,17 @@ for i in range(len(scaled_route_x)):
     point = (int(scaled_route_x[i]), int(scaled_route_y[i]))
     cv2.circle(map_with_path, point, 5, (0, 0, 255), -1)
 
+arrow_step = max(1, len(scaled_route_x) // 10)  # Стрілка кожні 10% шляху
+for i in range(arrow_step, len(scaled_route_x), arrow_step):
+    start_point = (int(scaled_route_x[i - 1]), int(scaled_route_y[i - 1]))
+    end_point = (int(scaled_route_x[i]), int(scaled_route_y[i]))
+    cv2.arrowedLine(map_with_path, start_point, end_point, (0, 255, 0), 3, tipLength=0.3)
+
+if len(scaled_route_x) > 1:
+    final_start = (int(scaled_route_x[-2]), int(scaled_route_y[-2]))
+    final_end = (int(scaled_route_x[-1]), int(scaled_route_y[-1]))
+    cv2.arrowedLine(map_with_path, final_start, final_end, (0, 255, 0), 4, tipLength=0.4)
+
 plt.figure(figsize=(10, 10))
 plt.imshow(cv2.cvtColor(map_with_path, cv2.COLOR_BGR2RGB))
 plt.title("Drone's Path on Global Map")

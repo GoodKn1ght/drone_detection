@@ -64,18 +64,20 @@ for i in range(7, 49, 1):
     cv2.rectangle(image2_with_rectangle, top_left, bottom_right, (255, 255, 255), 2)
     arrow_color = (0, 0, 255)
     cv2.arrowedLine(image2_with_rectangle, (width // 2, 15), (top_left[0] + 15, top_left[1] + 15), arrow_color, 3, tipLength=0.05)
+    if i < 10:
+        plt.figure(figsize=(12, 6))
+        plt.subplot(1, 2, 1)
+        plt.imshow(cv2.cvtColor(image1_with_rectangle, cv2.COLOR_BGR2RGB))
+        plt.title(f"Image {i} with Green Square (Original)")
+        plt.axis('off')
+        plt.subplot(1, 2, 2)
+        plt.imshow(cv2.cvtColor(image2_with_rectangle, cv2.COLOR_BGR2RGB))
+        plt.title(f"Image {i+1} with White Rectangle and Arrow (Matched Area)")
+        plt.axis('off')
+        plt.tight_layout()
+        plt.draw()
+        plt.pause(5)
 
-    plt.figure(figsize=(12, 6))
-    plt.subplot(1, 2, 1)
-    plt.imshow(cv2.cvtColor(image1_with_rectangle, cv2.COLOR_BGR2RGB))
-    plt.title(f"Image {i} with Green Square (Original)")
-    plt.axis('off')
-    plt.subplot(1, 2, 2)
-    plt.imshow(cv2.cvtColor(image2_with_rectangle, cv2.COLOR_BGR2RGB))
-    plt.title(f"Image {i+1} with White Rectangle and Arrow (Matched Area)")
-    plt.axis('off')
-    plt.tight_layout()
-    plt.show()
 
 reverse_absolute_x = start_x
 reverse_absolute_y = start_y
@@ -139,7 +141,8 @@ for i in range(6, 0, -1):
     plt.title(f"Image {i-1} with White Rectangle and Arrow (Matched Area)")
     plt.axis('off')
     plt.tight_layout()
-    plt.show()
+    plt.draw()
+    plt.pause(0.1)
 
 reverse_route_x.reverse()
 reverse_route_y.reverse()
