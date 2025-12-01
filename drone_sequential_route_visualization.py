@@ -56,7 +56,7 @@ for i in range(7, 49, 1):
 
     if i > 6:
         frame_angle = np.degrees(np.arctan2(offset_x, offset_y))
-        current_angle += 7.5 * frame_angle
+        current_angle += ((100*(np.cos(np.deg2rad(current_angle))))/zoom) * frame_angle
 
     image1_with_rectangle = cv2.cvtColor(image1, cv2.COLOR_GRAY2BGR)
     cv2.rectangle(image1_with_rectangle, (width // 2 - 15, 0), (width // 2 + 15, 30), (0, 255, 0), 2)
@@ -122,7 +122,7 @@ for i in range(6, 0, -1):
 
     frame_angle = np.degrees(np.arctan2(offset_x, offset_y)) + 180
 
-    reverse_current_angle -= 7.5 * frame_angle
+    reverse_current_angle -= ((100*(np.cos(np.deg2rad(current_angle))))/zoom) * frame_angle
 
     image1_with_rectangle = cv2.cvtColor(image1, cv2.COLOR_GRAY2BGR)
     cv2.rectangle(image1_with_rectangle, (width // 2 - 15, height - 30), (width // 2 + 15, height), (0, 255, 0), 2)

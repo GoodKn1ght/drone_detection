@@ -30,7 +30,7 @@ for i in range(len(scaled_route_x)):
     point = (int(scaled_route_x[i]), int(scaled_route_y[i]))
     cv2.circle(map_with_path, point, 5, (0, 0, 255), -1)
 
-arrow_step = max(1, len(scaled_route_x) // 10)  # Стрілка кожні 10% шляху
+arrow_step = max(1, len(scaled_route_x) // 10)
 for i in range(arrow_step, len(scaled_route_x), arrow_step):
     start_point = (int(scaled_route_x[i - 1]), int(scaled_route_y[i - 1]))
     end_point = (int(scaled_route_x[i]), int(scaled_route_y[i]))

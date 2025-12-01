@@ -65,7 +65,7 @@ def track_drone_route():
 
         if i > 6:
             frame_angle = np.degrees(np.arctan2(offset_x, offset_y))
-            current_angle += 7.5 * frame_angle
+            current_angle += ((100*(np.cos(np.deg2rad(current_angle))))/zoom) * frame_angle
 
             print(f"Frame angle: {frame_angle:.2f} degrees")
 
@@ -119,7 +119,7 @@ def track_drone_route():
         print(f"Updated position: absolute_x={reverse_absolute_x}, absolute_y={reverse_absolute_y}")
 
         frame_angle = np.degrees(np.arctan2(offset_x, offset_y)) + 180
-        reverse_current_angle -= 7.5 * frame_angle
+        reverse_current_angle -= ((100*(np.cos(np.deg2rad(current_angle))))/zoom) * frame_angle
 
         print(f"Frame angle: {frame_angle:.2f} degrees")
 
